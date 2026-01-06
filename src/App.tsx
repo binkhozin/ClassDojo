@@ -18,6 +18,12 @@ import ClassDashboardPage from "./pages/teacher/ClassDashboardPage";
 import EditClassPage from "./pages/teacher/EditClassPage";
 import ManageStudentPage from "./pages/teacher/ManageStudentPage";
 import ManageParentsPage from "./pages/teacher/ManageParentsPage";
+import LogBehaviorPage from "./pages/teacher/LogBehaviorPage";
+import BehaviorLogPage from "./pages/teacher/BehaviorLogPage";
+import LeaderboardPage from "./pages/teacher/LeaderboardPage";
+import StudentPerformancePage from "./pages/teacher/StudentPerformancePage";
+import RewardsManagementPage from "./pages/teacher/RewardsManagementPage";
+import BadgesPage from "./pages/teacher/BadgesPage";
 import ParentDashboard from "./pages/ParentDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -74,6 +80,12 @@ function App() {
                 <Route path="classes/:classId/students/add" element={<ManageStudentPage />} />
                 <Route path="classes/:classId/students/:studentId" element={<ManageStudentPage />} />
                 <Route path="classes/:classId/students/:studentId/parents" element={<ManageParentsPage />} />
+                <Route path="behaviors/log" element={<LogBehaviorPage />} />
+                <Route path="behaviors/history" element={<BehaviorLogPage />} />
+                <Route path="leaderboard" element={<LeaderboardPage />} />
+                <Route path="performance" element={<StudentPerformancePage />} />
+                <Route path="rewards" element={<RewardsManagementPage />} />
+                <Route path="badges" element={<BadgesPage />} />
               </Route>
               <Route
                 path="/parent/dashboard"

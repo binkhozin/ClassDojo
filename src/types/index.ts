@@ -38,6 +38,20 @@ export type {
   ReportPeriod,
 } from "./database";
 
+export type {
+  BehaviorLog as GamificationBehaviorLog,
+  Reward as GamificationReward,
+  Badge as GamificationBadge,
+  StudentStats,
+  LeaderboardEntry,
+  RewardRedemption,
+  BadgeAward,
+  StreakInfo,
+  LeaderboardFilter,
+  BehaviorFilter,
+  Notification as GamificationNotification,
+} from "./gamification";
+
 // Extended types with relations
 export interface StudentWithPoints extends Student {
   total_points?: number;
