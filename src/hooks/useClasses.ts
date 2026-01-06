@@ -21,6 +21,24 @@ export function useClasses(teacherId?: string) {
   });
 }
 
+export function useTeacherSummary(teacherId?: string) {
+  return useQuery({
+    queryKey: ["teacher-summary", teacherId],
+    queryFn: async () => {
+      if (!teacherId) return [];
+      
+      const { data, error } = await supabase
+        .from("teacher_class_summary")
+        .select("*")
+        .eq("teacher_id", teacherId);
+      
+      if (error) throw error;
+      return data;
+    },
+    enabled: !!teacherId,
+  });
+}
+
 export function useClass(classId?: string) {
   return useQuery({
     queryKey: ["class", classId],

@@ -11,6 +11,13 @@ import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
 import VerifyEmailPage from "./pages/auth/VerifyEmailPage";
 import Dashboard from "./pages/Dashboard";
 import TeacherDashboard from "./pages/TeacherDashboard";
+import TeacherLayout from "./components/layout/TeacherLayout";
+import TeacherDashboardPage from "./pages/teacher/DashboardPage";
+import CreateClassPage from "./pages/teacher/CreateClassPage";
+import ClassDashboardPage from "./pages/teacher/ClassDashboardPage";
+import EditClassPage from "./pages/teacher/EditClassPage";
+import ManageStudentPage from "./pages/teacher/ManageStudentPage";
+import ManageParentsPage from "./pages/teacher/ManageParentsPage";
 import ParentDashboard from "./pages/ParentDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -53,13 +60,21 @@ function App() {
                 }
               />
               <Route
-                path="/teacher/dashboard"
+                path="/teacher"
                 element={
                   <ProtectedRoute allowedRoles={["teacher"]}>
-                    <TeacherDashboard />
+                    <TeacherLayout />
                   </ProtectedRoute>
                 }
-              />
+              >
+                <Route path="dashboard" element={<TeacherDashboardPage />} />
+                <Route path="classes/create" element={<CreateClassPage />} />
+                <Route path="classes/:classId" element={<ClassDashboardPage />} />
+                <Route path="classes/:classId/edit" element={<EditClassPage />} />
+                <Route path="classes/:classId/students/add" element={<ManageStudentPage />} />
+                <Route path="classes/:classId/students/:studentId" element={<ManageStudentPage />} />
+                <Route path="classes/:classId/students/:studentId/parents" element={<ManageParentsPage />} />
+              </Route>
               <Route
                 path="/parent/dashboard"
                 element={
