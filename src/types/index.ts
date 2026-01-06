@@ -25,6 +25,7 @@ export type ClassUpdate = Database["public"]["Tables"]["classes"]["Update"];
 export type StudentUpdate = Database["public"]["Tables"]["students"]["Update"];
 
 // Enum types
+export * from "./auth";
 export type {
   UserRole,
   BehaviorType,
