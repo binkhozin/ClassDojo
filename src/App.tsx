@@ -18,6 +18,20 @@ import ClassDashboardPage from "./pages/teacher/ClassDashboardPage";
 import EditClassPage from "./pages/teacher/EditClassPage";
 import ManageStudentPage from "./pages/teacher/ManageStudentPage";
 import ManageParentsPage from "./pages/teacher/ManageParentsPage";
+import ParentMessagesPage from "./pages/teacher/ParentMessagesPage";
+import GenerateReportPage from "./pages/teacher/GenerateReportPage";
+import AnnouncementsPage from "./pages/teacher/AnnouncementsPage";
+import ParentLayout from "./components/layout/ParentLayout";
+import ParentDashboardPage from "./pages/parent/DashboardPage";
+import StudentDetailsPage from "./pages/parent/StudentDetailsPage";
+import MessagesPage from "./pages/parent/MessagesPage";
+import ConversationView from "./components/parent/ConversationView";
+import ParentReportsPage from "./pages/parent/ReportsPage";
+import ParentAnnouncementsPage from "./pages/parent/AnnouncementsPage";
+import ParentSettingsPage from "./pages/parent/SettingsPage";
+import ParentChildrenPage from "./pages/parent/ChildrenPage";
+import ParentSchedulePage from "./pages/parent/SchedulePage";
+import ParentProfilePage from "./pages/parent/ProfilePage";
 import ParentDashboard from "./pages/ParentDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -59,6 +73,8 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+
+              {/* Teacher Routes */}
               <Route
                 path="/teacher"
                 element={
@@ -74,15 +90,36 @@ function App() {
                 <Route path="classes/:classId/students/add" element={<ManageStudentPage />} />
                 <Route path="classes/:classId/students/:studentId" element={<ManageStudentPage />} />
                 <Route path="classes/:classId/students/:studentId/parents" element={<ManageParentsPage />} />
+                <Route path="messages" element={<ParentMessagesPage />} />
+                <Route path="messages/:conversationId" element={<ParentMessagesPage />} />
+                <Route path="reports/generate" element={<GenerateReportPage />} />
+                <Route path="announcements" element={<AnnouncementsPage />} />
+                <Route path="announcements/create" element={<AnnouncementsPage />} />
               </Route>
+
+              {/* Parent Routes */}
               <Route
-                path="/parent/dashboard"
+                path="/parent"
                 element={
                   <ProtectedRoute allowedRoles={["parent"]}>
-                    <ParentDashboard />
+                    <ParentLayout />
                   </ProtectedRoute>
                 }
-              />
+              >
+                <Route path="dashboard" element={<ParentDashboardPage />} />
+                <Route path="children" element={<ParentChildrenPage />} />
+                <Route path="children/:childId" element={<StudentDetailsPage />} />
+                <Route path="messages" element={<MessagesPage />} />
+                <Route path="messages/:conversationId" element={<ConversationView />} />
+                <Route path="reports" element={<ParentReportsPage />} />
+                <Route path="announcements" element={<ParentAnnouncementsPage />} />
+                <Route path="schedule" element={<ParentSchedulePage />} />
+                <Route path="settings" element={<ParentSettingsPage />} />
+                <Route path="profile" element={<ParentProfilePage />} />
+                <Route path="activity" element={<ParentDashboardPage />} />
+              </Route>
+
+              {/* Student Routes */}
               <Route
                 path="/student/dashboard"
                 element={
@@ -91,6 +128,8 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+
+              {/* Admin Routes */}
               <Route
                 path="/admin/dashboard"
                 element={
@@ -98,6 +137,16 @@ function App() {
                     <AdminDashboard />
                   </ProtectedRoute>
                 }
+              />
+
+              {/* Legacy Routes - Redirect to new structure */}
+              <Route
+                path="/parent/dashboard"
+                element={<Navigate to="/parent/dashboard" replace />}
+              />
+              <Route
+                path="/student/dashboard"
+                element={<Navigate to="/student/dashboard" replace />}
               />
 
               {/* Catch-all Route */}
