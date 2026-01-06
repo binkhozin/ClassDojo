@@ -15,6 +15,7 @@ import { Button } from "../ui/button";
 import { useAuth } from "../../hooks/useAuth";
 import { useLogout } from "../../hooks/useLogout";
 import { cn } from "../../lib/utils";
+import { NotificationCenter } from "../NotificationCenter";
 
 const TeacherLayout: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -30,6 +31,13 @@ const TeacherLayout: React.FC = () => {
 
   const navItems = [
     { name: "Dashboard", href: "/teacher/dashboard", icon: LayoutDashboard },
+    { name: "Classes", href: "/teacher/classes", icon: GraduationCap, disabled: true },
+    { name: "Behavior Log", href: "/teacher/behaviors/log", icon: Star },
+    { name: "Behavior History", href: "/teacher/behaviors/history", icon: Star },
+    { name: "Leaderboard", href: "/teacher/leaderboard", icon: Star },
+    { name: "Performance", href: "/teacher/performance", icon: Star },
+    { name: "Rewards", href: "/teacher/rewards", icon: Star },
+    { name: "Badges", href: "/teacher/badges", icon: Star },
     { name: "Messages", href: "/teacher/messages", icon: MessageSquare, disabled: true },
     { name: "Settings", href: "/teacher/settings", icon: Settings, disabled: true },
   ];
@@ -40,13 +48,16 @@ const TeacherLayout: React.FC = () => {
     <div className="flex h-screen bg-background">
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex w-64 flex-col border-r">
-        <div className="p-6">
+        <div className="p-6 flex items-center justify-between">
           <Link to="/teacher/dashboard" className="flex items-center gap-2">
             <div className="bg-primary p-1.5 rounded-lg">
               <GraduationCap className="h-6 w-6 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold tracking-tight">ClassDojo</span>
           </Link>
+          <div className="hidden md:block">
+            <NotificationCenter />
+          </div>
         </div>
         <nav className="flex-1 px-4 space-y-1">
           {navItems.map((item) => (
@@ -94,9 +105,12 @@ const TeacherLayout: React.FC = () => {
             <GraduationCap className="h-6 w-6 text-primary" />
             <span className="font-bold">ClassDojo</span>
           </Link>
-          <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+          <div className="flex items-center gap-2">
+            <NotificationCenter />
+            <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
         </div>
         
         {isMobileMenuOpen && (
