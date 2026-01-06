@@ -1,14 +1,15 @@
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
 import { Button } from "../components/ui/button";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 
 export default function HomePage() {
-  const { user, loading } = useAuth();
+  const { user, isLoading } = useAuth();
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p className="text-lg">Loading...</p>
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
       </div>
     );
   }
@@ -18,17 +19,17 @@ export default function HomePage() {
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           <Card>
-            <CardHeader>
-              <CardTitle className="text-4xl">Welcome to ClassDojo</CardTitle>
-              <CardDescription className="text-lg">
+            <CardHeader className="text-center">
+              <CardTitle className="text-5xl font-extrabold mb-2">ClassDojo</CardTitle>
+              <CardDescription className="text-xl">
                 A comprehensive classroom management and behavior tracking system
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid gap-4 md:grid-cols-3">
-                <Card>
+            <CardContent className="space-y-8">
+              <div className="grid gap-6 md:grid-cols-3">
+                <Card className="bg-primary/5 border-primary/20">
                   <CardHeader>
-                    <CardTitle className="text-lg">For Teachers</CardTitle>
+                    <CardTitle className="text-xl">For Teachers</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
@@ -36,9 +37,9 @@ export default function HomePage() {
                     </p>
                   </CardContent>
                 </Card>
-                <Card>
+                <Card className="bg-primary/5 border-primary/20">
                   <CardHeader>
-                    <CardTitle className="text-lg">For Parents</CardTitle>
+                    <CardTitle className="text-xl">For Parents</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
@@ -46,9 +47,9 @@ export default function HomePage() {
                     </p>
                   </CardContent>
                 </Card>
-                <Card>
+                <Card className="bg-primary/5 border-primary/20">
                   <CardHeader>
-                    <CardTitle className="text-lg">For Students</CardTitle>
+                    <CardTitle className="text-xl">For Students</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
@@ -58,16 +59,21 @@ export default function HomePage() {
                 </Card>
               </div>
 
-              {!user && (
-                <div className="flex gap-4 justify-center">
-                  <Button size="lg">Sign In</Button>
-                  <Button size="lg" variant="outline">Sign Up</Button>
+              {!user ? (
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Button size="lg" className="w-full sm:w-auto px-12" asChild>
+                    <Link to="/login">Sign In</Link>
+                  </Button>
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto px-12" asChild>
+                    <Link to="/signup">Sign Up</Link>
+                  </Button>
                 </div>
-              )}
-
-              {user && (
-                <div className="text-center">
-                  <p className="text-lg">Welcome back! You're logged in.</p>
+              ) : (
+                <div className="text-center space-y-4">
+                  <p className="text-xl font-medium">Welcome back, {user.fullName}!</p>
+                  <Button size="lg" asChild>
+                    <Link to="/dashboard">Go to Dashboard</Link>
+                  </Button>
                 </div>
               )}
             </CardContent>

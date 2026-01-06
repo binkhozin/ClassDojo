@@ -19,6 +19,15 @@ A comprehensive classroom management and behavior tracking system built with mod
 
 ## Features
 
+### Authentication & User Management
+- **Multi-role support**: Teacher, Parent, Student, and Admin roles
+- **Email Verification**: Required for account activation
+- **Password Reset**: Self-service password recovery flow
+- **OAuth Integration**: Sign in with Google supported
+- **Role-based Access Control**: Protected routes and UI elements
+- **Session Persistence**: Automatic login on refresh
+- **Profile Management**: User-editable profile information
+
 ### User Roles
 - **Teachers**: Manage classes, students, track behavior, create rewards and badges
 - **Parents**: View children's progress, communicate with teachers
