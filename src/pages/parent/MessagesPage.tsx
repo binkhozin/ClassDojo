@@ -37,7 +37,7 @@ import { formatMessageTimeShort, truncateMessageContent, getMessageStatus } from
 import { formatDistanceToNow } from "date-fns";
 import { cn } from "@/lib/utils";
 import type { Conversation } from "@/types";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function MessagesPage() {
   const { user } = useAuth();
