@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
-import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase";
+import { useAuth } from "@/hooks/useAuth";
 import { MessageWithDetails, Conversation, SearchFilters, PaginatedResponse } from "@/types";
 import { toast } from "sonner";
 
